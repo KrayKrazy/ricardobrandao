@@ -1,9 +1,8 @@
-
 "use client";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 
-export function BeforeAfter() {
+export function BeforeAfter({ beforeImage = "/antes1.jpg", afterImage = "/depois1.jpg" }: { beforeImage?: string, afterImage?: string }) {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -43,27 +42,28 @@ export function BeforeAfter() {
   return (
     <div 
       ref={containerRef}
-      className="relative w-full aspect-video select-none overflow-hidden cursor-ew-resize group"
+      className="relative w-full aspect-video select-none overflow-hidden cursor-ew-resize group rounded-xl bg-black"
       onMouseDown={() => setIsDragging(true)}
       onTouchStart={() => setIsDragging(true)}
     >
+      {/* DEPOIS (Background / Base Image) */}
       <div className="absolute inset-0">
-        <Image src="/identidade_visual.jpg" alt="Depois" fill className="object-cover grayscale" />
+        <Image src={afterImage} alt="Depois" fill className="object-contain sm:object-cover" />
         <div className="absolute top-4 right-4 bg-black/60 text-white px-3 py-1 text-xs font-bold uppercase rounded-sm border border-white/20 backdrop-blur-sm z-10">Depois</div>
       </div>
       
+      {/* ANTES (Foreground / Clipped Image) */}
       <div 
-        className="absolute inset-0 right-auto overflow-hidden"
-        style={{ width: `${sliderPosition}%` }}
+        className="absolute inset-0"
+        style={{ clipPath: `inset(0 calc(100% - ${sliderPosition}%) 0 0)` }}
       >
-        <div className="absolute inset-0 w-[100vw] sm:w-[896px]"> 
-          <Image src="/identidade_visual.jpg" alt="Antes" fill className="object-cover sepia-[0.3]" />
-          <div className="absolute top-4 left-4 bg-black/60 text-white px-3 py-1 text-xs font-bold uppercase rounded-sm border border-white/20 backdrop-blur-sm z-10">Antes</div>
-        </div>
+        <Image src={beforeImage} alt="Antes" fill className="object-contain sm:object-cover" />
+        <div className="absolute top-4 left-4 bg-black/60 text-white px-3 py-1 text-xs font-bold uppercase rounded-sm border border-white/20 backdrop-blur-sm z-10">Antes</div>
       </div>
 
+      {/* DRAGGER LINE */}
       <div 
-        className="absolute top-0 bottom-0 w-0.5 bg-[#d4af37] shadow-[0_0_10px_rgba(212,175,55,0.8)]"
+        className="absolute top-0 bottom-0 w-0.5 bg-[#d4af37] shadow-[0_0_10px_rgba(212,175,55,0.8)] z-20"
         style={{ left: `${sliderPosition}%`, transform: 'translateX(-50%)' }}
       >
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-[#0a0a0a] border-2 border-[#d4af37] rounded-full flex items-center justify-center shadow-lg transition-transform group-hover:scale-110">

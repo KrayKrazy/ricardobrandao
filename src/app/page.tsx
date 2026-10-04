@@ -1,17 +1,23 @@
-
 import Image from 'next/image';
 import { MarqueeDemo } from '@/components/reviews-marquee';
 import { BeforeAfter } from '@/components/before-after';
 import { MapPin, Phone } from 'lucide-react';
 
 export default function Home() {
+  const whatsappUrl = "https://wa.me/5561991868252?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20avaliação.";
+
+  const beforeAfterPairs = [
+    { before: "/identidade_visual.jpg", after: "/identidade_visual.jpg" },
+    // Adicione mais fotos aqui copiando a linha de cima e mudando os nomes dos arquivos
+  ];
+
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white font-sans selection:bg-[#d4af37] selection:text-black">
       {/* HEADER */}
       <header className="fixed top-0 w-full z-50 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/5">
         <div className="container mx-auto px-6 h-20 flex items-center justify-between">
           <div className="text-xl font-serif tracking-widest text-[#d4af37]">RICARDO BRANDÃO</div>
-          <a href="https://wa.me/5561991868252" target="_blank" className="bg-[#d4af37] text-black px-6 py-2.5 rounded-sm font-medium text-sm hover:bg-[#e5c158] transition-colors flex items-center gap-2">
+          <a href={whatsappUrl} target="_blank" className="bg-[#d4af37] text-black px-6 py-2.5 rounded-sm font-medium text-sm hover:bg-[#e5c158] transition-colors flex items-center gap-2">
             <Phone size={16} /> Agendar Consulta
           </a>
         </div>
@@ -35,15 +41,21 @@ export default function Home() {
         </div>
       </section>
 
-      {/* BEFORE / AFTER */}
-      <section className="py-24 bg-[#111] border-y border-white/5">
+      {/* BEFORE / AFTER SLIDER */}
+      <section className="py-24 bg-[#111] border-y border-white/5 overflow-hidden">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-serif mb-4">Transformação Absoluta</h2>
             <p className="text-gray-400">Arraste para comparar o antes e depois do nosso método exclusivo.</p>
           </div>
-          <div className="max-w-4xl mx-auto rounded-xl overflow-hidden shadow-[0_0_50px_rgba(212,175,55,0.05)] border border-white/10">
-            <BeforeAfter />
+          
+          {/* Carousel Container */}
+          <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 hide-scrollbar">
+            {beforeAfterPairs.map((pair, index) => (
+              <div key={index} className="min-w-[100%] md:min-w-[80%] lg:min-w-[900px] snap-center shrink-0 shadow-[0_0_50px_rgba(212,175,55,0.05)] border border-white/10 rounded-xl overflow-hidden">
+                <BeforeAfter beforeImage={pair.before} afterImage={pair.after} />
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -77,7 +89,7 @@ export default function Home() {
             </div>
             
             <div className="mt-10 flex gap-4">
-               <a href="https://wa.me/5561991868252" target="_blank" className="bg-white/5 border border-white/10 hover:border-[#d4af37] text-white px-6 py-3 rounded-sm transition-all flex items-center gap-2">
+               <a href={whatsappUrl} target="_blank" className="bg-white/5 border border-white/10 hover:border-[#d4af37] text-white px-6 py-3 rounded-sm transition-all flex items-center gap-2">
                  <Phone size={18} /> WhatsApp
                </a>
                <a href="https://www.instagram.com/protesecapilarb/" target="_blank" className="bg-white/5 border border-white/10 hover:border-[#d4af37] text-white px-6 py-3 rounded-sm transition-all flex items-center gap-2">
@@ -85,8 +97,15 @@ export default function Home() {
                </a>
             </div>
           </div>
-          <div className="relative aspect-square rounded-sm overflow-hidden border border-white/10">
-            <Image src="/identidade_visual.jpg" alt="Ricardo Brandão Clinic" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-700" />
+          
+          <div className="relative aspect-square rounded-sm overflow-hidden border border-white/10 bg-[#0a0a0a]">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3838.742468305712!2d-48.05837262402127!3d-15.817454223565012!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a331189311bd3%3A0xe9f7faaf0bc131bc!2sEd.%20TTC%20-%20Taguatinga%20Trade%20Center!5e0!3m2!1spt-BR!2sbr!4v1714493322199!5m2!1spt-BR!2sbr" 
+              className="absolute inset-0 w-full h-full border-0 grayscale hover:grayscale-0 transition-all duration-700" 
+              allowFullScreen 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
         </div>
       </section>
@@ -95,6 +114,16 @@ export default function Home() {
       <footer className="py-8 text-center text-gray-600 text-xs border-t border-white/5">
         &copy; {new Date().getFullYear()} Próteses Capilar Ricardo Brandão. Todos os direitos reservados.
       </footer>
+
+      <style dangerouslySetInnerHTML={{__html: `
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}} />
     </div>
   );
 }
