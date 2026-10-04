@@ -42,13 +42,13 @@ export function BeforeAfter({ beforeImage = "/antes1.jpg", afterImage = "/depois
   return (
     <div 
       ref={containerRef}
-      className="relative w-full aspect-square md:aspect-[4/3] select-none overflow-hidden cursor-ew-resize group rounded-xl bg-[#0a0a0a]"
+      className="relative w-full max-w-[600px] mx-auto aspect-square select-none overflow-hidden cursor-ew-resize group rounded-xl bg-[#0a0a0a]"
       onMouseDown={() => setIsDragging(true)}
       onTouchStart={() => setIsDragging(true)}
     >
       {/* DEPOIS (Background / Base Image) */}
       <div className="absolute inset-0">
-        <Image src={afterImage} alt="Depois" fill className="object-cover" />
+        <Image src={afterImage} alt="Depois" fill className="object-cover object-top" />
         <div className="absolute top-4 right-4 bg-black/60 text-white px-3 py-1 text-xs font-bold uppercase rounded-sm border border-white/20 backdrop-blur-sm z-10">Depois</div>
       </div>
       
@@ -57,7 +57,7 @@ export function BeforeAfter({ beforeImage = "/antes1.jpg", afterImage = "/depois
         className="absolute inset-0"
         style={{ clipPath: `inset(0 calc(100% - ${sliderPosition}%) 0 0)` }}
       >
-        <Image src={beforeImage} alt="Antes" fill className="object-cover" />
+        <Image src={beforeImage} alt="Antes" fill className="object-cover object-top" />
         <div className="absolute top-4 left-4 bg-black/60 text-white px-3 py-1 text-xs font-bold uppercase rounded-sm border border-white/20 backdrop-blur-sm z-10">Antes</div>
       </div>
 
