@@ -7,7 +7,7 @@ export default function Home() {
   const whatsappUrl = "https://wa.me/5561991868252?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20avaliação.";
 
   const beforeAfterPairs = [
-    { before: "/identidade_visual.jpg", after: "/identidade_visual.jpg" },
+    { before: "/antes.jpg", after: "/depois.jpg" },
     // Adicione mais fotos aqui copiando a linha de cima e mudando os nomes dos arquivos
   ];
 
