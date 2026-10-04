@@ -115,6 +115,18 @@ export default function Home() {
         &copy; {new Date().getFullYear()} Próteses Capilar Ricardo Brandão. Todos os direitos reservados.
       </footer>
 
+      {/* FLOATING WHATSAPP BUTTON */}
+      <a 
+        href={whatsappUrl} 
+        target="_blank" 
+        className="fixed bottom-6 right-6 z-50 bg-[#d4af37] text-black px-5 py-3 rounded-full font-medium shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:scale-105 hover:bg-[#e5c158] transition-all flex items-center gap-2 group"
+      >
+        <div className="bg-black/10 rounded-full p-1">
+          <Phone size={18} />
+        </div>
+        <span className="text-sm">Agende uma Avaliação Grátis</span>
+      </a>
+
       <style dangerouslySetInnerHTML={{__html: `
         .hide-scrollbar::-webkit-scrollbar {
           display: none;
