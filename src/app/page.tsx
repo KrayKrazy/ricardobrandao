@@ -50,9 +50,9 @@ export default function Home() {
           </div>
           
           {/* Carousel Container */}
-          <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 hide-scrollbar">
+          <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 hide-scrollbar md:justify-center">
             {beforeAfterPairs.map((pair, index) => (
-              <div key={index} className="min-w-[100%] md:min-w-[80%] lg:min-w-[900px] snap-center shrink-0 shadow-[0_0_50px_rgba(212,175,55,0.05)] border border-white/10 rounded-xl overflow-hidden">
+              <div key={index} className="w-full md:w-[800px] shrink-0 snap-center shadow-[0_0_50px_rgba(212,175,55,0.05)] border border-white/10 rounded-xl overflow-hidden mx-auto">
                 <BeforeAfter beforeImage={pair.before} afterImage={pair.after} />
               </div>
             ))}
@@ -100,7 +100,7 @@ export default function Home() {
           
           <div className="relative aspect-square rounded-sm overflow-hidden border border-white/10 bg-[#0a0a0a]">
             <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3838.742468305712!2d-48.05837262402127!3d-15.817454223565012!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a331189311bd3%3A0xe9f7faaf0bc131bc!2sEd.%20TTC%20-%20Taguatinga%20Trade%20Center!5e0!3m2!1spt-BR!2sbr!4v1714493322199!5m2!1spt-BR!2sbr" 
+              src="https://maps.google.com/maps?q=St.%20Central%20Lotes%201/12%20Ed.%20TTC%20Taguatinga&t=&z=16&ie=UTF8&iwloc=&output=embed" 
               className="absolute inset-0 w-full h-full border-0 grayscale hover:grayscale-0 transition-all duration-700" 
               allowFullScreen 
               loading="lazy" 
